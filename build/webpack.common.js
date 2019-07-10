@@ -1,11 +1,12 @@
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
+const webpack = require("webpack");
 
 module.exports = {
   entry: {
-    polyfill: "./src/entry/polyfill.js",
-    index: "./src/entry/index.js"
+    polyfill: "@/entry/polyfill.js",
+    index: "@/entry/index.js"
   },
   output: {
     filename: "[name].bundle.js",
@@ -23,8 +24,16 @@ module.exports = {
         //是否压缩html里的js（使用uglify-js进行的压缩）
         minifyJS: true
       }
-    })
+    }),
+    new webpack.NamedModulesPlugin(),
+    new webpack.HotModuleReplacementPlugin()
   ],
+  resolve: {
+    extensions: [".js", ".vue", ".json", ".css", ".scss", ".html"],
+    alias: {
+      "@": path.resolve(__dirname, "../src")
+    }
+  },
   module: {
     rules: [
       {

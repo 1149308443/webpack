@@ -93,7 +93,23 @@ devServer: {
 	// }
 },
 ```
-配置 npm run dev 修改npm run build 
+	启用webpack热更新插件
+new webpack.NamedModulesPlugin(),
+new webpack.HotModuleReplacementPlugin()
+	指定生产环境   配置webpack.prod.js
+const webpack = require("webpack");
+new webpack.DefinePlugin({
+	"process.env.NODE_ENV": JSON.stringify("production")
+})
+	配置webpack.common.js后缀名和路径
+resolve: {
+    extensions: [".js", ".vue", ".json", ".css", ".scss", ".html"],
+    alias: {
+      "@": path.resolve(__dirname, "../src")
+    }
+  },
+
+	配置 npm run dev 修改npm run build 
 "build": "webpack --config ./build/webpack.prod.js",
 "dev": "webpack-dev-server  --config ./build/webpack.dev.js"
 
