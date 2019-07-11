@@ -5,7 +5,6 @@ const webpack = require("webpack");
 
 module.exports = {
   entry: {
-    polyfill: "@/entry/polyfill.js",
     index: "@/entry/index.js"
   },
   output: {
@@ -41,7 +40,8 @@ module.exports = {
         exclude: /(node_modules|bower_components)/,
         loader: "babel-loader",
         options: {
-          presets: ["@babel/preset-env"]
+          presets: ["@babel/preset-env","@babel/preset-react"],
+          plugins:["@babel/transform-runtime"]
         }
       },
       {
@@ -58,18 +58,6 @@ module.exports = {
         options: {
           name: "fonts/[name].[ext]"
         }
-      },
-      {
-        test: /\.css$/,
-        use: ["style-loader", "css-loader"]
-      },
-      {
-        test: /\.scss$/,
-        use: [
-          "style-loader", // creates style nodes from JS strings
-          "css-loader", // translates CSS into CommonJS
-          "sass-loader" // compiles Sass to CSS, using Node Sass by default
-        ]
       }
     ]
   }
