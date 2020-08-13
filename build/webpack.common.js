@@ -8,7 +8,7 @@ module.exports = {
     index: "@/entry/index.js"
   },
   output: {
-    filename: "[name].bundle.js",
+    filename: "[name].[hash:5].bundle.js",
     path: path.resolve(__dirname, "../dist")
   },
   plugins: [
@@ -28,7 +28,7 @@ module.exports = {
     new webpack.HotModuleReplacementPlugin()
   ],
   resolve: {
-    extensions: [".js", ".vue", ".json", ".css", ".scss", ".html"],
+    extensions: [".js", ".vue", ".json", ".css", ".less", ".html"],
     alias: {
       "@": path.resolve(__dirname, "../src")
     }
@@ -38,11 +38,11 @@ module.exports = {
       {
         test: /\.m?js$/,
         exclude: /(node_modules|bower_components)/,
-        loader: "babel-loader",
-        options: {
-          presets: ["@babel/preset-env","@babel/preset-react"],
-          plugins:["@babel/transform-runtime"]
-        }
+        loader: "babel-loader"
+        // options: {
+        //   presets: ["@babel/preset-env","@babel/preset-react"],
+        //   plugins:["@babel/transform-runtime"]
+        // }
       },
       {
         test: /\.(png|jpg|jpeg|gif|svg)$/i,

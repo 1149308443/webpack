@@ -15,8 +15,8 @@ module.exports = merge(common, {
       "process.env.NODE_ENV": JSON.stringify("production")
     }),
     new MiniCssExtractPlugin({
-      filename: "./css/[name].css",
-      chunkFilename: "./css/[name].css"
+      filename: "./css/[name].[hash:5].css",
+      chunkFilename: "./css/[name].[hash:5].css"
     })
   ],
   module: {
@@ -27,7 +27,7 @@ module.exports = merge(common, {
         use: [MiniCssExtractPlugin.loader, "css-loader"]
       },
       {
-        test: /\.(css|scss|sass)$/,
+        test: /\.(css|less)$/,
         exclude: /node_modules/,
         use: [
           MiniCssExtractPlugin.loader,
@@ -42,12 +42,7 @@ module.exports = merge(common, {
               plugins: [require("autoprefixer"), require("postcss-import")()]
             }
           },
-          {
-            loader: "sass-loader",
-            options: {
-              sourceMap: false
-            }
-          }
+          'less-loader'
         ]
       }
     ]

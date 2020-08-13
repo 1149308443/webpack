@@ -1,12 +1,13 @@
 import _ from "lodash";
 import './common.css';
-import './common.scss';
+import './common.less';
 import getData from '../utils';
 
 const fnc = async () =>{ 
-  console.log("是否支持bable");
   const data =  await getData();
-  console.log(data);
+  console.log('支持es6语法');
+  const what = data.wahta?.id || 1;
+  console.log(what)
 }
 
 function component() {

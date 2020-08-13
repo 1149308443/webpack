@@ -34,7 +34,7 @@ module.exports = merge(common, {
 				],
 			},
 			{
-				test: /\.scss$/,
+				test: /\.less$/,
 				use: [
 					{
 						loader: 'style-loader',
@@ -60,12 +60,7 @@ module.exports = merge(common, {
 							],
 						},
 					},
-					{
-						loader: 'sass-loader',
-						options: {
-							sourceMap: true,
-						},
-					},
+					'less-loader'
 				],
       }
     ]
